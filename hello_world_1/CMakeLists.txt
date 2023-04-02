@@ -6,3 +6,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(hello_world_1 main.cpp)
+
+include(CTest)
+add_test(NAME exit_with_0 COMMAND hello_world_1)
