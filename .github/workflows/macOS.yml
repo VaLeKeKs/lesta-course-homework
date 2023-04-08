@@ -1,5 +1,5 @@
 
-name: mac_build
+name: macOS_build
 
 on:
   pull_request:
