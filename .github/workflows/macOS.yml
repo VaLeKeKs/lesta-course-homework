@@ -1,0 +1,27 @@
+
+name: macOS_build
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build tests hello_world_lib
+      run: |
+        cd hello_world_2 
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake --build .
+    - name: Run tests hello_world_lib
+      run: |
+        cd hello_world_2/build/hello_lib
+        ctest --output-on-failure
