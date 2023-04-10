@@ -1,0 +1,63 @@
+name: win
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build tests hello_world_lib
+        run: |
+          cd hello_world_2
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --config Release
+
+      - name: Run tests hello_world_lib
+        run: |
+          cd hello_world_2/build/hello_lib
+          ctest -C Release 
+
+      - name: Install SDL3
+        run: |
+          git clone https://github.com/libsdl-org/SDL.git
+          cd SDL
+          mkdir build
+          cd build
+          cmake -DSDL_STATIC=ON -DSDL_STATIC_PIC=ON ..
+          cmake --build . --config Release
+          cmake --install . --config Release
+
+      - name: Build tests 02_sdl_dynamic
+        run: |
+          cd 02_sdl_shared
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --config Release
+
+      - name: Run tests 02_sdl_dynamic
+        run: |
+          cd 02_sdl_dynamic
+          build/Release/ctest
+
+      - name: Build tests 02_sdl_static
+        run: |
+          cd 02_sdl_static
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --config Release
+
+      - name: Run tests 02_sdl_static
+        run: |
+          cd 02_sdl_static
+          build/Release/ctest
