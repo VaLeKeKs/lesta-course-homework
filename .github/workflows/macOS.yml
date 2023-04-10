@@ -24,7 +24,7 @@ jobs:
       - name: Run tests hello_world_lib
         run: |
           cd hello_world_2/build/hello_lib
-          ctest --output-on-failure
+          ctest 
 
       - name: Install SDL3
         run: |
