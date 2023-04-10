@@ -24,3 +24,43 @@ jobs:
       run: |
         cd hello_world_2/build/hello_lib
         ctest --output-on-failure
+
+    - name: Install SDL3
+      run: |
+        git clone https://github.com/libsdl-org/SDL.git
+        cd SDL
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release -DSDL_STATIC=ON -DSDL_STATIC_PIC=ON ..
+        cmake --build .
+        cmake --install .
+
+    - name: Build tests 02_sdl_dynamic
+      run: |
+        cd 02_sdl_dynamic
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake --build .
+
+    - name: Run tests 02_sdl_dynamic
+      run: |
+        cd 02_sdl_dynamic
+        chmod +x test.sh
+        cd build
+        ctest
+
+    - name: Build tests 02_sdl_static
+      run: |
+        cd 02_sdl_static
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake --build .
+
+    - name: Run tests 02_sdl_static
+      run: |
+        cd 02_sdl_static
+        chmod +x test.sh
+        cd build
+        ctest
