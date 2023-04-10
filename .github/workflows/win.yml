@@ -38,7 +38,7 @@ jobs:
 
       - name: Build tests 02_sdl_dynamic
         run: |
-          cd 02_sdl_shared
+          cd 02_sdl_dynamic
           mkdir build
           cd build
           cmake ..
