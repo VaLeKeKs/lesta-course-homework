@@ -10,3 +10,7 @@ add_executable(02_sdl_static src/main.cpp)
 find_package(SDL3 REQUIRED)
 
 target_link_libraries(02_sdl_static PRIVATE SDL3::SDL3-static)
+
+include(CTest)
+
+add_test(NAME pytest COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/test.sh)
