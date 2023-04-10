@@ -1,4 +1,4 @@
-name: win
+name: win_build
 
 on:
   pull_request:
@@ -47,7 +47,7 @@ jobs:
       - name: Run tests 02_sdl_dynamic
         run: |
           cd 02_sdl_dynamic
-          build/Release/ctest
+          build/Release/02_sdl_dynamic.exe | python test/pytest.py
 
       - name: Build tests 02_sdl_static
         run: |
@@ -60,4 +60,4 @@ jobs:
       - name: Run tests 02_sdl_static
         run: |
           cd 02_sdl_static
-          build/Release/ctest
+          build/Release/02_sdl_static.exe | python test/pytest.py
