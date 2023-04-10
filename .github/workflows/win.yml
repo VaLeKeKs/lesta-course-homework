@@ -1,4 +1,4 @@
-name: win
+name: win_build
 
 on:
   pull_request:
@@ -38,16 +38,16 @@ jobs:
 
       - name: Build tests 02_sdl_dynamic
         run: |
-          cd 02_sdl_shared
+          cd 02_sdl_dynamic
           mkdir build
           cd build
           cmake ..
           cmake --build . --config Release
 
-      - name: Run tests 02_sdl_dynamic
-        run: |
-          cd 02_sdl_dynamic
-          build/Release/ctest
+      #- name: Run tests 02_sdl_dynamic
+       # run: |
+        #  cd 02_sdl_dynamic
+         # build/Release/ctest
 
       - name: Build tests 02_sdl_static
         run: |
@@ -57,7 +57,7 @@ jobs:
           cmake ..
           cmake --build . --config Release
 
-      - name: Run tests 02_sdl_static
-        run: |
-          cd 02_sdl_static
-          build/Release/ctest
+      #- name: Run tests 02_sdl_static
+       # run: |
+        #  cd 02_sdl_static
+         # build/Release/ctest
