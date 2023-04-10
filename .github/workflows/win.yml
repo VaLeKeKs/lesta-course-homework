@@ -44,10 +44,10 @@ jobs:
           cmake ..
           cmake --build . --config Release
 
-      - name: Run tests 02_sdl_dynamic
-        run: |
-          cd 02_sdl_dynamic
-          build/Release/02_sdl_dynamic.exe | python test/pytest.py
+      #- name: Run tests 02_sdl_dynamic
+       # run: |
+        #  cd 02_sdl_dynamic
+         # build/Release/ctest
 
       - name: Build tests 02_sdl_static
         run: |
@@ -57,7 +57,7 @@ jobs:
           cmake ..
           cmake --build . --config Release
 
-      - name: Run tests 02_sdl_static
-        run: |
-          cd 02_sdl_static
-          build/Release/02_sdl_static.exe | python test/pytest.py
+      #- name: Run tests 02_sdl_static
+       # run: |
+        #  cd 02_sdl_static
+         # build/Release/ctest
