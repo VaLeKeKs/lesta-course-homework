@@ -20,4 +20,5 @@ int main() {
 
     std::cout << "linked: " << linked << '\n';
 
+    return std::cout.good() ? EXIT_SUCCESS : EXIT_FAILURE;
 }
