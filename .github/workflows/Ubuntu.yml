@@ -33,7 +33,7 @@ jobs:
         cd build
         cmake -DCMAKE_BUILD_TYPE=Release -DSDL_STATIC=ON -DSDL_STATIC_PIC=ON ..
         cmake --build .
-        cmake --install .
+        sudo cmake --install .
 
     - name: Build tests 02_sdl_dynamic
       run: |
