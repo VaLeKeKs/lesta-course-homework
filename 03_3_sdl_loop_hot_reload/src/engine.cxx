@@ -146,17 +146,17 @@ std::ostream &operator<<(std::ostream &out, const Event &event) {
 
 engine::~engine() = default;
 
-game *reload_game(game *oldGame, std::string_view libraryName,
-                  std::string_view tempLibraryName, engine &engine, void *&oldHandle) {
+game *reload_game(game *oldGame, std::string_view library_name,
+                  std::string_view tmp_library_name, engine &engine, void *&oldHandle) {
     if (oldGame) {
         delete oldGame;
         SDL_UnloadObject(oldHandle);
     }
 
-    std::filesystem::remove(tempLibraryName);
-    std::filesystem::copy(libraryName, tempLibraryName);
+    std::filesystem::remove(tmp_library_name);
+    std::filesystem::copy(library_name, tmp_library_name);
 
-    auto gameHandle{SDL_LoadObject(tempLibraryName.data())};
+    auto gameHandle{SDL_LoadObject(tmp_library_name.data())};
     if (gameHandle == nullptr) {
         std::cerr << "Failed to SDL_LoadObject\n";
         return nullptr;
