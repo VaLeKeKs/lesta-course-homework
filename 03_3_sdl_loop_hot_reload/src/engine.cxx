@@ -170,8 +170,8 @@ game *reload_game(game *old_game, std::string_view library_name,
         return nullptr;
     }
 
-    using CreateGame = decltype(&create_game);
-    auto create_game_linked{reinterpret_cast<CreateGame>(create_game_func_ptr)};
+    using Create_Game = decltype(&create_game);
+    auto create_game_linked{reinterpret_cast<Create_Game>(create_game_func_ptr)};
 
     return create_game_linked(&engine);
 }
