@@ -146,32 +146,32 @@ std::ostream &operator<<(std::ostream &out, const Event &event) {
 
 engine::~engine() = default;
 
-game *reload_game(game *oldGame, std::string_view library_name,
-                  std::string_view tmp_library_name, engine &engine, void *&oldHandle) {
-    if (oldGame) {
-        delete oldGame;
-        SDL_UnloadObject(oldHandle);
+game *reload_game(game *old_game, std::string_view library_name,
+                  std::string_view tmp_library_name, engine &engine, void *&old_handle) {
+    if (old_game) {
+        delete old_game;
+        SDL_UnloadObject(old_handle);
     }
 
     std::filesystem::remove(tmp_library_name);
     std::filesystem::copy(library_name, tmp_library_name);
 
-    auto gameHandle{SDL_LoadObject(tmp_library_name.data())};
-    if (gameHandle == nullptr) {
+    auto game_handle{SDL_LoadObject(tmp_library_name.data())};
+    if (game_handle == nullptr) {
         std::cerr << "Failed to SDL_LoadObject\n";
         return nullptr;
     }
 
-    oldHandle = gameHandle;
+    old_handle = game_handle;
 
-    auto createGameFuncPtr{SDL_LoadFunction(gameHandle, "create_game")};
-    if (createGameFuncPtr == nullptr) {
+    auto create_game_func_ptr{SDL_LoadFunction(game_handle, "create_game")};
+    if (create_game_func_ptr == nullptr) {
         std::cerr << "Failed to SDL_LoadFunction\n";
         return nullptr;
     }
 
     using CreateGame = decltype(&create_game);
-    auto create_game_linked{reinterpret_cast<CreateGame>(createGameFuncPtr)};
+    auto create_game_linked{reinterpret_cast<CreateGame>(create_game_func_ptr)};
 
     return create_game_linked(&engine);
 }
