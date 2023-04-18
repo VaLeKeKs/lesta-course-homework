@@ -2,8 +2,8 @@
 // Created by valentin on 17.04.23.
 //
 
-#ifndef INC_03_2_SDL_LOOP_TO_ENGINE_ENGINE_DLL_HXX
-#define INC_03_2_SDL_LOOP_TO_ENGINE_ENGINE_DLL_HXX
+#ifndef INC_03_3_SDL_LOOP_HOT_RELOAD_ENGINE_HXX
+#define INC_03_3_SDL_LOOP_HOT_RELOAD_ENGINE_HXX
 #include <string>
 #include <string_view>
 #include <iosfwd>
@@ -38,7 +38,6 @@ class engine;
 engine* create_engine();
 void destroy_engine(engine* e);
 
-
 class engine {
 public:
     virtual ~engine();
@@ -47,5 +46,17 @@ public:
     virtual bool uninitialize()=0;
 };
 
+class game
+{
+public:
+    virtual ~game() = default;
+    virtual void initialize() = 0;
+    virtual void onEvent(Event event) = 0;
+    virtual void update() = 0;
+    virtual void render() const = 0;
+};
 
-#endif //INC_03_2_SDL_LOOP_TO_ENGINE_ENGINE_DLL_HXX
+extern "C" game* create_game(engine* engine);
+
+
+#endif //INC_03_3_SDL_LOOP_HOT_RELOAD_ENGINE_HXX
