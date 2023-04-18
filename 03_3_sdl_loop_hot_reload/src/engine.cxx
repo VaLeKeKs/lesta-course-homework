@@ -146,10 +146,10 @@ std::ostream &operator<<(std::ostream &out, const Event &event) {
 
 engine::~engine() = default;
 
-game *reload_game(game *old_game, std::string_view library_name,
+game *reload_game(game *old, std::string_view library_name,
                   std::string_view tmp_library_name, engine &engine, void *&old_handle) {
-    if (old_game) {
-        delete old_game;
+    if (old) {
+        delete old;
         SDL_UnloadObject(old_handle);
     }
 
