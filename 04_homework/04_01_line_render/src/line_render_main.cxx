@@ -9,8 +9,6 @@ int main() {
 
     graphics::LineRender render{canvas, width, height};
 
-    render.drawLine({0, 0}, {1919, 1079}, graphics::red);
-
     for (size_t i = 0; i < 100; ++i) {
         graphics::Position start{graphics::Position::generate_random(width, height)};
         graphics::Position end{graphics::Position::generate_random(width, height)};
