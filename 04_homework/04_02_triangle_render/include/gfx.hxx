@@ -16,7 +16,6 @@ namespace graphics {
         double p4{};
         double p5{};
         double p6{};
-        double p7{};
     };
 
     class IGfx {
